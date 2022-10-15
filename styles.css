@@ -1,0 +1,529 @@
+body {
+    background: black;
+    color: green;
+    font-size: 16px;
+    position: relative;
+    
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+label {
+    padding: 1vh;
+    color: gold;
+    font-size: 13vh;
+    display: table;
+    max-width: 70vw;
+    margin: 16px auto;
+}
+button {
+    background: none;
+    color: yellow;
+    cursor: pointer;
+    padding: .5vh;
+    margin: 0.5vh;
+    border: 1px solid white;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: none;
+    
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 500px;
+}
+
+input {
+    background: black;
+    color: green;
+    padding: 1vh;
+    border-radius: 0px;
+    margin: .5vh;
+    border: 1px solid white;
+}
+
+a {
+  cursor: pointer;
+  display: inline;
+}
+
+#messageToUser {
+    display: table;
+    background: #363434;
+    margin: 1vh auto;
+    color: blue;
+    max-width: 315px;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 12px;
+}
+
+#disclaimerWrap {
+    margin: 0 auto;
+    display: table;
+}
+
+#disclaimerIdChoice {
+    float: left;
+    display: table;
+    cursor: pointer;
+}
+
+#disclaimerIdChoiceDescription {
+    display: table;
+    float: left;
+    padding: 2px;
+    color: orange;
+}
+
+#disclaimer {
+    font-size: 1vh;
+    background: white;
+    padding: 8px;
+    color: black;
+    border-radius: 7px;
+    margin: 25px;
+}
+
+#doorUserSelect {
+    display: table;
+    margin: 0 auto;
+    padding: 1vh;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+#menu > button {
+    color: #2cb7b1;
+    display: block;
+    margin: 13vh auto;
+    font-size: 3vh;
+    border-radius: 10px;
+    padding: 2vh;
+}
+
+.disabledButton {
+  border: 1px solid #999999;
+  color: #666666;
+  cursor: default;
+}
+
+/*#disclaimer {
+    display: table;
+    margin: 5vh auto 5vh auto;
+    border: none;
+    font-size: 4vh;
+}*/
+
+.back-btn {
+    clear: both;
+}
+
+.centerButton {
+    margin: 3vh auto;
+    display: table;
+}
+
+#mainWrap {
+    display: table;
+    margin: 16px auto;
+}
+
+.wrap {
+    display: table;
+    margin: 20px auto;
+    position: relative;
+}
+
+.wrap button {
+    display: table;
+    margin: 1vh auto;
+}
+
+
+#wrap {
+    position: relative;
+    width: auto;
+    display: table;
+    clear: both;
+    margin: 0 auto;
+}   
+
+#questionWeb {
+    display: none;
+    margin: 0 auto;
+}
+
+.questionStyle {
+    font-size: 3vh;
+    word-break: break-word;
+    max-width: 48vh;
+    padding: 6vh 6vh 1vh 6vh;
+    text-align: center;
+    color: #ffff003b;
+}
+
+#menu {
+    display: none;
+}
+
+.windows {
+
+}
+
+.subLabel {
+color: #a79119;
+font-size: 9vh;
+margin: 1px auto 11px auto;
+}
+
+#attractPeopleWindow {
+        max-width: 92vh;
+    text-align: center;
+    word-break: break-word;
+    margin: 4vh auto;
+    overflow: auto;
+    clear: both;
+    display: table;
+    /*font-size: 5vh;*/
+}
+
+#matches {
+    display: none;
+    margin: 7vh 0 0 0;
+}
+
+
+
+#question-div {
+    font-size: 4.5vh;
+    margin: 5vh auto;
+    max-width: 54vh;
+    position: relative;
+}
+
+#cancelButton  {
+color: red;
+}
+
+.navigateQuestionsBox {
+    text-align: right;
+    display: inline;
+    color:grey;
+}
+
+#navigateQuestionsLeft>a {
+    cursor: pointer;
+    display: inline;
+    font-size: 1.5vh;
+    margin: 0px 8px 0px 0px;
+}#navigateQuestionsRight>a {
+    cursor: pointer;
+    display: inline;
+    font-size: 1.5vh;
+    margin: 0px 0px 0px 8px;
+}
+
+#navigateQuestionsLabelBox {
+    display: inline;
+    color:grey;
+    cursor: default;
+}
+
+.navigateQuestionsBox:hover {
+    color: green;
+}
+
+/*a.navigateQuestions {
+
+}*/
+
+
+
+#navigateUserQuestionsLeft {
+    float: left;
+    width: 16vh;
+    margin: 10px;
+}
+#navigateUserQuestionsRight {
+    float: left;
+    width: 16vh;
+    text-align: right;
+    margin: 10px;
+}
+
+.usersDiv {
+    color: rgb(255 139 26);
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    display: table;
+    cursor: text;
+    margin: 0 auto 15px auto;
+    text-align: center;
+        font-size: 4.5vh;
+        background: black;
+}
+
+#zeroChatTutorial {
+    margin: 0 auto;
+    position: relative;
+}
+
+#messages {
+    background: #191919;
+    color: lime;
+    padding: 1vh 1vh 9vh 1vh;
+    border-radius: 7px 7px 7px 7px;
+    margin: 0vh;
+    box-shadow: 0px 0px 5px 0px white;
+    word-break: break-word;
+    width: 54vh;
+    position: relative;
+}
+
+input #message, input #send {
+    background: black;
+    color: green;
+    padding: 1vh;
+    /*margin: -41px 0px 0px -142px;*/
+    border: 1px solid white;
+    /*position: absolute;*/
+}
+
+input #message {
+    width: 237px;
+}
+
+#messageDiv {
+    text-align: center;
+    background: #01020e;
+    bottom: 0;
+    display: table;
+    margin: 0 auto;
+    padding: 1vh;
+    border-radius: 1.1vh;
+    color: #001d00;
+}
+
+.questionWebLabel {
+    font-size: 165%;
+    margin: 0 auto;
+    display: table;
+    color: #ffd70036;
+}
+
+#askPeopleWindow {
+    position: relative;
+    margin: 0 auto 3vh auto;
+}
+
+#askPeopleInputs {
+    display: table;
+    margin: 0 auto;
+}
+
+#matchQuantityDiv {
+    color: #41478b;
+    text-transform: capitalize;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#resetChoices > button {
+    background: #160303;
+    color: #a92828;
+    border: none;
+}
+
+#resetChoices button:hover {
+    background: red;
+    color: black;
+}
+
+#flightServicesBusiness {
+    display: none;
+}
+
+#controlCenterWrap {
+position: relative;
+    margin: 0 auto;
+    clear: both;
+    background: blue;
+    display: table;
+}
+
+#questionControlButtons {
+    display: inline;
+    margin: 0 auto;
+}
+
+#questionWebLogo1{
+    cursor: pointer;
+    width: 452px;
+    margin: 60px auto;
+    display: table;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+#questionWebLogo2{
+    cursor: pointer;
+    width: 257px;
+    margin: 60px auto;
+    display: table;
+}
+
+#questionWebLogo3{
+width: 257px;
+    display: table;
+    margin: auto;
+        pointer-events: none;
+}
+
+#questionWebLogo4 {
+    width: 295px;
+    display: table;
+    margin: 7vh auto;
+    pointer-events: none;
+}
+
+#riceBusinessLogo { 
+    width: 257px;
+    margin: 1px auto;
+    display: table;
+}
+
+#aviationBusinessLogo {
+    width: 257px;
+    margin: 0 auto;
+    display: table;
+}
+
+#riceBusiness {
+    display: none;
+}
+#yourBusinessGoesHere {
+    display: none;
+}
+
+.comingSoonWrap {
+    position: relative;
+    margin: 0 auto;
+    display: table;
+    font-size: 4vh;
+    color: #2b2b0a;
+}
+
+.comingSoon {
+    margin: 50px auto;
+}
+
+.prcyLogo {
+    position: absolute;
+    width: 120px;
+    top: 99px;
+}
+
+.loadingGif {
+position: absolute;
+    left: 227px;
+    top: 65px;
+}
+
+#messageStylesDiv {
+/*    background: -webkit-linear-gradient(left, orange , #dcff00, #458659, #dcff00, orange);
+    background: -o-linear-gradient(right, orange , #dcff00, #458659, #dcff00, orange);
+    background: -moz-linear-gradient(right, orange , #dcff00, #458659, #dcff00, orange);
+    background: linear-gradient(to right, orange , #dcff00, #458659, #dcff00, orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    padding: 1vh;
+    margin: 12px;
+    border-radius: 13px;
+    display: table;
+    box-shadow: 2px 2px 4px -2px white;
+    cursor: pointer;*/
+
+    /*box-shadow: 2px 2px 0px -1px white;*/
+    cursor: pointer;
+    padding: 0 0 28px 1px;
+    color: #b6d3ff;
+}
+
+#editMessageDiv {
+    background: black;
+    color: #ffff00;
+    font-size: 11px;
+    position: absolute;
+    left: -54px;
+    top: -29px;
+    border: 1px #ffffff82;
+}
+
+#editMessageSaveDiv {
+    background: green;
+    color: yellow;
+    font-size: 5px;
+    position: absolute;
+    left: -59px;
+    top: 5px;
+    border: 1px #ffffff82;
+}
+
+#messageWrap {
+    position: relative;
+}
+
+#questionEditButton {
+    background: black;
+    color: #ffff00;
+    font-size: 11px;
+    position: absolute;
+    left: -54px;
+    top: -29px;
+    border: 1px #ffffff82;
+}
+
+#questionEditSaveButton {
+    background: green;
+    color: yellow;
+    font-size: 5px;
+    position: absolute;
+    left: -16px;
+    top: -29px;
+    border: 1px #ffffff82;
+}
+
+#editQuestionInput {
+    font-size: 4.5vh;
+}

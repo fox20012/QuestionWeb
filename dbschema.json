@@ -1,0 +1,78 @@
+{
+    "db_name": "QuestionWeb",
+    "db_file": "data/QuestionWeb.db",
+    "version": 2,
+    "maps": {
+        "users/.+/data.json": {
+            "to_table": [
+                {
+                    "node": "message", "table": "message"
+                },
+                {
+                    "node": "questions",
+                    "table": "questions"  
+                },
+                {
+                    "node": "crowned",
+                    "table": "crowned"  
+                }
+            ]
+        },
+        "users/.+/content.json": {
+            "to_json_table": [ "cert_user_id" ],
+            "file_name": "data.json"
+        }
+    },
+    "tables": {
+        "json": {
+            "cols": [
+                ["json_id", "INTEGER PRIMARY KEY AUTOINCREMENT"],
+                ["directory", "TEXT"],
+                ["file_name", "TEXT"],
+                ["cert_user_id", "TEXT"]
+            ],
+            "indexes": ["CREATE UNIQUE INDEX path ON json(directory, file_name)"],
+            "schema_changed": 10
+        },
+        "message": {
+            "cols": [
+                ["message_id", "INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE"],
+                ["body", "TEXT"],
+                ["date_added", "INTEGER"],
+                ["json_id", "INTEGER REFERENCES json (json_id)"],
+                ["posters_cert_id", "TEXT"],
+                ["message_to_your_king", "TEXT"]
+            ],
+            "indexes": ["CREATE UNIQUE INDEX message_key ON message(message_id)"],
+
+            "schema_changed": 10
+        },
+        "questions": {
+            "cols": [
+                ["questions_id", "INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE"],
+                ["json_id", "INTEGER REFERENCES json (json_id)"],
+                ["cert_user_id", "TEXT"],
+                ["question", "TEXT"],
+                ["question_status", "TEXT"]
+            ],
+            "indexes": ["CREATE UNIQUE INDEX questions_key ON questions(questions_id)"],
+            "schema_changed": 10
+        },
+        "crowned": {
+            "cols": [
+                ["last_online", "INTEGER"],
+                ["questions_count", "INTEGER"],
+                ["your_cert_id", "TEXT"],
+                ["my_question_position", "INTEGER"],
+                ["question_position", "INTEGER"],
+                ["king_position", "INTEGER"],
+                ["your_king", "TEXT"],
+                ["your_last_king", "TEXT"],
+                ["your_address", "TEXT"],
+                ["json_id", "INTEGER UNIQUE REFERENCES json (json_id)"]
+            ],
+            "indexes": ["CREATE UNIQUE INDEX crowned_key ON crowned(your_cert_id)"],
+            "schema_changed": 10
+        }
+    }
+}

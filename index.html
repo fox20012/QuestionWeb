@@ -1,32 +1,927 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>QuestionWeb[ReactVersion]</title>
+	<title>QuestionWeb</title>
 	<meta charset="utf-8">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<base href="" target="_top" id="base">
-	<script>base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/[&?]wrapper=False/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "")</script>
+	<!-- <script>base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/[&?]wrapper=False/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "")</script> -->
+	<link rel="stylesheet" href="styles.css">
+
+	<script>
+		setTimeout(function() {
+			base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/([&?])wrapper=False/, "$1").replace(/&$/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "") // Fix urls
+		}, 100); // 100ms later, to workaround double js download in chrome
+	</script>
+
+<!-- <script>
+function gup( name, url ) {
+  if (!url) url = location.href;
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( url );
+  return results == null ? null : results[1];
+}
+
+var s = gup('u',location.href)
+if((s != "?" || s != '') && s != null)
+{
+    //document.write("Redirect url: "+s)
+
+  s = decodeURIComponent(s);
+  var t = s.replace(/zero:\/?\/?/g,  "");
+  window.top.location.replace("/"+t);
+}else
+{
+var x = location.search.replace(/wrapper_nonce=.+/g,'');
+if(x != "?" && x != null)
+{
+  window.top.location.replace("/blog.kaffie.bit/"+x);
+}
+}
+
+</script> -->
+
 </head>
 <body>
-	<div id="root">not getting react module yet</div>
-	<div id="roottwo">not getting react module yet</div>
-	<div id="wrap">
-		<h1>-=To do list=-</h1>
-		<ul>
-			<li>What React Youtube tutorial to see how they serve css files</li>
-			<li>reLearn about super(prop)</li>
-			<li>blah</li>
-			<li>blah</li>
-		</ul>
+	<div id="test"></div>
+	<div id="mainWrap">
+		<div class="windows" id="door">
+			<!-- <label>The8Pill</label> -->
+			<div id="doorWrap" class="wrap">
+				<div id='messageToUser'>
+					[ Attention User ]
+					<br>
+					<br>
+					After udpating this site and refreshing the page.
+					<br>
+					<br>
+					Make sure you reload and rebuild the database in that drag out zeronet side bar thingy on the right. 
+					<br>
+					<br>
+					Drag that infinity button, in the top right to the left.
+					<br>
+					<br>
+					There you will see the reload and rebuild buttons.
+				</div>
+				<img id="questionWebLogo1" class="zoom" src="img/questionWebLogo.png" alt="Question Web" onclick="page.windowSelect('menu')">
+				<div id="disclaimerWrap" style="position: relative">
+					<input onClick="page.setDisclaimerChoice()" id="disclaimerIdChoice" type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;" />
+					<div id="disclaimerIdChoiceDescription">I agree</div>
+				</div>
+				<a href="#Select+user" id="doorUserSelect" class="select_user" onclick="return page.selectUser()">Select user</a>
+				<div id="disclaimer">
+					Disclaimer
+					<br>
+					<br>
+					This is decentralized Web 3 technology.
+					<br>
+					There is not centralized control and all parties can manipulate the data found here.
+					<br>
+					As long as they know the url that links to this page.
+					<br>
+					Always use tor but remember nothing is ever truly private.
+					<br>
+					God is watching!
+				</div>
+			</div>
+		</div>
+		<div class="windows" id="menu">
+			<!-- <button onclick="page.windowSelect('questionWeb')">Question Web</button> -->
+			<a onclick="page.windowSelect('questionWeb')"><img class="zoom" id="questionWebLogo2" src="img/questionWebLogo.png" alt="Question Web"></a>
+			<a onclick="page.windowSelect('riceBusiness')"><img class="zoom" id="riceBusinessLogo" src="img/riceCompanyLogo.png" alt="Rice Business"></a>
+			<a onclick="page.windowSelect('flightServicesBusiness')"><img class="zoom" id="aviationBusinessLogo" src="img/aviationBusinessLogo.png" alt="Aviation Business"></a>
+			<button onclick="page.windowSelect('yourBusinessGoesHere')">your business goes here</button>
+		</div>
+		<div class="windows" id="questionWeb">
+			<div class="windows" id="attractPeopleWindow">
+				<div>
+					<div class="wrap" id="yourCurrentKingNoticeDiv"></div>
+					<a href="#Select+user" class="select_user" onclick="return page.selectUser()">Select user</a>
+					<img id="questionWebLogo3" class="" src="img/questionWebLogo.png" alt="Question Web">
+				</div>
+				<!-- <label class="questionWebLabel">QuestionWeb</label> -->
+
+				<div class="wrap">
+					
+
+					<div id="wrap"></div>
+
+					<div id="question-div">Question Goes Here</div>
+
+					<div class="navigateQuestionsBox" id="navigateQuestionsLeft"></div>
+					<div id="navigateQuestionsLabelBox">navigate questions</div>
+					<div class="navigateQuestionsBox" id="navigateQuestionsRight"></div>
+				</div>
+
+				<div id="zeroChatTutorial">
+					<br>
+					<div id="messages">
+						<div  id="messageStylesDiv">
+						</div>
+					</div>
+					<a href="#Select+user" class="select_user" onclick="return page.selectUser()">Select user</a>:
+					<input type="text" id="message" onkeypress="if (event.keyCode == 13) page.loadMessages({'control':1})">
+					<input type="button" id="send" value="Send!" onclick="return page.loadMessages({'control':1})"/>
+
+				</div>
+			</div>
+			<div  class="windows" id="askPeopleWindow">
+				<a href="#Select+user" class="select_user" onclick="return page.selectUser()">Select user</a>:
+				<button class="back-btn" onclick="page.windowSelect('menu')">Back</button>
+				<div id="resetChoices">
+					<button onclick="page.loadMessages({'control':'modifyQuestionLocation','choice':'reset'})">Reset Choices</>	
+				</div>
+				<!-- <label class="questionWebLabel">QuestionWeb</label> -->
+				<img id="questionWebLogo4" class="" src="img/questionWebLogo.png" alt="Question Web">
+
+				<div id="askPeopleInputs">
+					<textarea type="text" id="askInput" class="usersDiv" onkeypress="if (event.keyCode == 13) page.loadMessages({'control':2})"></textarea>
+					<button class="centerButton" onclick="page.loadMessages({'control':2})">Communicate with your people</button>
+				</div>
+			</div>
+			
+			<div id="matches">
+				<div class="subLabel">Matches</div>
+				<div id="matches-div"></div>
+			</div>
+		</div>
+		<!-- delete matches later most likely with styles -->
+		<div id="matches">matches</div>
+		<div class="windows" id="flightServicesBusiness">
+			<button class="back-btn" onclick="page.windowSelect('menu')">Back</button>
+			<label>Top Gun Aviation</label>
+			<div class="comingSoonWrap">
+				<div class="comingSoon">Coming Soon</div>
+				<img class="prcyLogo" src="img/prcyLogo.png">
+				<img class="loadingGif" src="img/loading.gif">
+			</div>
+		</div>
+		<div class="windows" id="riceBusiness">
+			<button class="back-btn" onclick="page.windowSelect('menu')">Back</button>
+			<label>Unlimited Rice</label>
+			<div class="comingSoonWrap">
+				<img class="loadingGif" src="img/loading.gif">
+				<div class="comingSoon">Coming Soon</div>
+				<img class="prcyLogo" src="img/prcyLogo.png">
+			</div>
+		</div>
+		<div class="windows" id="yourBusinessGoesHere">
+			<button class="back-btn" onclick="page.windowSelect('menu')">Back</button>
+			<label>Your Business Goes here</label>
+			<div class="comingSoonWrap">
+				<img class="loadingGif" src="img/loading.gif">
+				<div class="comingSoon">Coming Soon</div>
+				<img class="prcyLogo" src="img/prcyLogo.png">
+			</div>
+		</div>
 	</div>
+	<div id="messageDiv"></div>
 
-<!-- Librarys for react and ZeroFrame -->
-<script type="text/javascript" src="js/ZeroFrame.js"></script>
-<script src="react.development.js"></script> 
-<script src="react-dom.development.js"></script>
+	<audio src="" id="my_audio" loop="loop"></audio>
 
-<!-- My modules -->
-<script src="header_module.js"></script>
-<script src="like_button_module.js"></script>
+<!-- 	<audio controls autoplay>
+		<source src="1.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio> -->
+
+	<!-- <script src="index.js"></script> -->
+	<script src="js/ZeroFrame.js"></script>
+	<script>
+
+		// alert('[ Attention User ] After udating this site and refreshing the page make sure you reload and rebuild the data base in that drag out zeronet side bar thingy on the right. Drag that infinity button, in the top right, to the left and you will see the reload and rebuild buttons in there.')
+
+		// document.getElementById('disclaimerIdChoice');
+		let attractPeopleWindow= document.getElementById('attractPeopleWindow');
+		let disclaimerIdChoice= document.getElementById('disclaimerIdChoice');
+		let askPeopleWindow= document.getElementById('askPeopleWindow');
+		let questionsDiv= document.getElementById('question-div');
+		let	matchesDiv= document.getElementById('matches');
+		let messages = document.getElementById('messages');
+		let yourCurrentKingNoticeDiv = document.getElementById('yourCurrentKingNoticeDiv');
+		let wrapDiv = document.getElementById('wrap');
+		let messageDiv = document.getElementById('messageDiv');
+		let windows = document.getElementsByClassName('windows');
+		let askInput = document.getElementById('askInput');
+		let navigateQuestionsLeft = document.getElementById('navigateQuestionsLeft');
+		let navigateQuestionsRight = document.getElementById('navigateQuestionsRight');
+		let zeroChatTutorial = document.getElementById('zeroChatTutorial');
+		var selectUserClassGroup = document.getElementsByClassName('select_user');
+		let initialize = false;
+		let loggedIn = false;
+		let disclaimerChoice=false;
+		let currentKingOnDisplay;
+
+
+		class ZeroChat extends ZeroFrame {
+			setDisclaimerChoice() {
+				// console.log('checking if disclaimer checked function');
+				if (disclaimerIdChoice.checked == false) {
+					disclaimerIdChoiceDescription.style.color = "red";
+				} else if (disclaimerIdChoice.checked == true) {
+					disclaimerIdChoiceDescription.style.color = "green";
+				}
+			}
+
+			checkIfLoggedIn() {
+				// console.log('checking if logged in function');
+				this.cmd("siteInfo", {}, (site_info) => {
+					if (!site_info.cert_user_id) {
+						this.selectUser();
+						for (var i=0; i<selectUserClassGroup.length; i++) {
+							selectUserClassGroup[i].style.color = "red";
+						}
+					} else {
+						for (var i=0; i<selectUserClassGroup.length; i++) {
+							selectUserClassGroup[i].style.color = "green";
+						}
+					}
+				});
+			}
+
+			setSiteInfo(site_info) {
+				messageDiv.innerHTML =
+					"Page address: " + site_info.address +
+					"<br>- Peers: " + site_info.peers +
+					"<br>- Size: " + site_info.settings.size +
+					"<br>- Modified: " + (new Date(site_info.content.modified*1000))
+			}
+
+			addMessage (username, message, control = 1) {
+				messageDiv.innerHTML = '';
+				message = '' + message;
+				var message_escaped = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+				if (control == 0) {
+					messageDiv.innerHTML += username + message_escaped;
+				} else {
+					messageDiv.innerHTML += "<li><b>" + username + "</b>: " + message_escaped + "</li>";
+				}
+			}
+
+			selectUser () {
+				this.cmd("wrapperNotification", ["info", "Please, select your account."]);
+				this.cmd("certSelect", {accepted_domains: ["08chan.bit", "cryptoid.bit", "kaffie.bit", "kxoid.bit", "millchan", "nanasi", "zeroid.bit", "zeroverse.bit", "zv.anonymous", "nobody", "zeropolska.bit"]});
+				return false
+			}
+
+			onRequest(cmd, message) {
+				if (cmd == "setSiteInfo") {
+					if (message.params.event) {
+						if (message.params.cert_user_id) {
+							for (var g=0; g<selectUserClassGroup.length; g++) {
+								selectUserClassGroup[g].innerHTML = message.params.cert_user_id
+								selectUserClassGroup[g].style.color = "green";
+							}
+
+							this.updateData();
+						}
+
+						if (message.params.event[0] == "file_done") {
+							this.updateData();
+						}
+
+						if (!message.params.cert_user_id) {
+							window.location.reload();
+						}
+
+						if (askPeopleWindow.offsetParent === null) {
+							if (message.params.cert_user_id) {
+								for (var g=0; g<selectUserClassGroup.length; g++) {
+									selectUserClassGroup[g].innerHTML = message.params.cert_user_id
+									selectUserClassGroup[g].style.color = "green";
+								}
+							}
+
+							this.updateData();
+						}
+
+					}
+					// console.log('!!!!!!!!!!!!!!!!!!!!!!!!!POSTING!!!!!!!!!!!!!!!!!!!!!!!!!')
+					// console.log(message.params)
+					// this.site_info = message.params;  // Save site info data to allow access it later
+
+					// Reload messages if new file arrives
+					
+				}
+			}
+
+			autoGrow (element) {
+				element.style.background = 'black';
+				element.style.height = "5px";
+				element.style.height = (element.scrollHeight)+"px";
+			}
+
+			loadMessages (bundle={'control':0}) {
+				// alert('in: '  + bundle.control)
+				this.addMessage('Running loadMessages functionx: ', bundle.control)
+				this.cmd("siteInfo", {}, (site_info) => {				
+					if (site_info.cert_user_id) {
+					// This is our data file path
+						var you = null;
+						var yourKingdomsInfo = null;
+						var data_inner_path = "data/users/" + site_info.auth_address + "/data.json"
+						var content_inner_path = "data/users/" + site_info.auth_address + "/content.json"
+					// find and get existing data
+						this.cmd("fileGet", {"inner_path": data_inner_path, "required": false}, (data) => {
+							if (data) {  // Parse current data file
+								data = JSON.parse(data)
+								// !!!!!!!!!!!!!!!!!!!!!!!!!! kill message_id here
+
+								delete data['message_id_count']
+
+								if (!data.crowned[0].your_last_king) {
+									data.crowned[0]['your_last_king'] = '' + site_info.cert_user_id;
+								}
+
+								if (data.crowned[0].your_last_king == '') {
+									data.crowned[0]['your_last_king'] = '' + site_info.cert_user_id;
+								}
+
+								delete data['json']
+
+								if (data['questions'].length == undefined) {
+									data['crowned']['questions_count'] = 1;
+									data['questions']["cert_user_id"] = site_info.cert_user_id;
+									data['questions']['question'] = "I am " +site_info.cert_user_id+ " your King!";
+									data['questions']['status'] = true;
+								} else {console.log('error4')}
+
+								if (data.crowned[0].your_king == 'kingless') {
+									data.crowned[0].question_position = 0;
+									data.crowned[0].king_position = 0;
+									data.crowned[0].your_king = site_info.cert_user_id;
+									data.crowned[0].your_last_king = '' + site_info.cert_user_id;
+								} else {console.log('error1')}
+
+								for (var i = 0; i<data.message.length; i++) {
+									if (data.message[i].message_to_your_king == 'kingless') {
+										data.message[i].message_to_your_king = site_info.cert_user_id;
+									} else {console.log('error5')}
+								}
+
+								// alert(data[0].cert_user_id)
+								data['crowned']['questions_count'] = data['questions'].length;
+
+								// console.log('!!!!!!!!!!!!!!questions[cert user id]!!!!!!!!!!!!!!!!')
+								for (var i=0; i<data['questions'].length; i++) {
+									// console.log(data['questions'][i].cert_user_id +' :Question: '+ data['questions'][i].question);
+									if (data['questions'][i].cert_user_id == 'site_info.cert_user_id') {
+										// alert('in')
+										data['questions'][i].cert_user_id = site_info.cert_user_id;
+									} else {console.log('error3')}
+								}
+								
+								// console.log('!!!!!!!!!!!!!!message[message_id]!!!!!!!!!!!!!!!!')
+								for (var i=0; i<data['message'].length; i++) {
+									// console.log('message_id:' + data['message'][i].message_id);
+									if (data['message'][i].message_id) {
+										delete data['message'][i].message_id;
+									}  else {console.log('error2')}
+								}
+							} else { // Not exists yet, use default data;
+								var questionsCountCup;
+
+								data = { 
+										"questions": [
+											{
+												"cert_user_id": site_info.cert_user_id,
+												"question": "I am " +site_info.cert_user_id+ " your King!",
+												"status": true
+											}
+										],
+										"message": [],
+										"crowned": [
+											{
+												'last_online': Date.now(),
+												'questions_count': 1,
+												'your_cert_id': site_info.cert_user_id,
+												'my_question_position': 0,
+												'question_position':0,
+												'king_position':0,
+												'your_king': site_info.cert_user_id,
+												'your_last_king': '' + site_info.cert_user_id,
+												'your_address': site_info.address
+											}
+										]
+								}
+							}	
+					// get all crowned	
+							this.cmd("dbQuery", ["SELECT * FROM crowned"], (xcup) => {
+							// edit existing question
+								if (bundle.control == 'questionEdit') {
+									// alert(bundle.control)
+									// alert(bundle.choice)
+									for (var ii=0; ii<data.questions.length; ii++) {
+										if (data.questions[ii].question == bundle.choice) {
+											var editQuestionInputCup = document.getElementById('editQuestionInput');
+											data.questions[ii].question = editQuestionInputCup.value;
+											data.questions[ii].schema++;
+											break;
+										}
+									}
+					// add new question
+								} else if (bundle.control == 2) {
+									data.questions.push({
+										"cert_user_id": site_info.cert_user_id,
+										"question": askInput.value,
+										"status": true,
+									});
+									data.crowned[0].questions_count++;
+									for (var t=0; t<xcup.length; t++) {
+										if (xcup[t].your_cert_id == site_info.cert_user_id) {
+											data.crowned[0].your_king = xcup[t].your_cert_id;
+											data.crowned[0].king_position=t;
+											data.crowned[0].question_position=data.crowned[0].questions_count-1;
+											break;
+										}
+									}
+									askInput.value = '';
+									this.windowSelect('attractPeople');
+					// modify questions position
+								} else if (bundle.control == 'updateUserPosition') {
+									if (bundle.choice == 'agree') {
+										data.crowned[0].question_position++;
+									} else if (bundle.choice == 'disagree') {
+										let lastKings = data.crowned[0].your_last_king.split(',');
+										for (var h=0; h<xcup.length; h++) {
+											// console.log(h +':'+ xcup.length)
+											if (!lastKings.includes('' + xcup[h].your_cert_id) && xcup[h].questions_count >0) {
+												// alert('in1')
+												data.crowned[0].your_last_king += ',' + xcup[h].your_cert_id;
+												data.crowned[0].your_king = xcup[h].your_cert_id;
+												data.crowned[0].question_position = 0;
+												break;
+											} else if (h == xcup.length-1) {
+												// alert('in2')
+												this.windowSelect('askPeople');
+											}
+										}
+									}
+					// navigate your kings questions quickly
+								} else if (bundle.control == 'modifyQuestionLocation') {
+									if (bundle.choice == 'backOne') {
+										// alert('backOne')
+											data.crowned[0].question_position--;
+									} else if (bundle.choice == 'beginning') {
+										// alert('beginning')
+											data.crowned[0].question_position = 0;
+									} else if (bundle.choice == 'end') {
+										// alert('end')
+											data.crowned[0].question_position = bundle.question_position;
+									} else if (bundle.choice == 'forwardOne') {
+										// alert('forwardOne')
+											data.crowned[0].question_position++;
+									} else if (bundle.choice == 'reset') {
+										data.crowned[0].question_position = 0;
+										data.crowned[0].king_position = 0;
+										data.crowned[0].your_king = site_info.cert_user_id;
+										data.crowned[0].your_last_king = '' + site_info.cert_user_id;
+										this.windowSelect('attractPeople');
+									}
+					// post a message to your kings group
+								} else if (bundle.control == 1) {
+									if (data.crowned[0].your_king === 'kingless') {
+										data.crowned[0].your_king = currentKingOnDisplay;
+									}
+
+									if (data.crowned[0].your_king != 'kingless') {
+										data.message.push({
+											"body": document.getElementById("message").value,
+											"date_added": Date.now(),
+											"posters_cert_id" : site_info.cert_user_id,
+											"message_to_your_king" : data.crowned[0].your_king
+										});
+									} else {
+										alert(data.crowned[0].your_king)
+										alert('!!!!!ALERT!!!!!! Trying to udate a message when you are kingless: ' + data.crowned[0].your_king)
+									}
+					// edit a Message
+								} else if (bundle.control == 'editMessage') {
+									var messageDivContentCup = document.getElementById('messageStylesInput_' + bundle.message_id);
+	// message edit ERROR !!!!!!!!!!!!!!!
+									console.log('!!!!!!!!!!!!!!!!!!!!!!editmessage!!!!!!!!!!!')
+									console.log(data.message)
+									// update schema++ here so the table is redropped
+									for (var r=0; r<data.message.length; r++) {
+										if (data.message[r].message_id == bundle.message_id) {
+											alert('in messages match: ' + data.message[r].message_id +':'+ bundle.message_id)
+											data.message[r].body = messageDivContentCup.value;
+											data.message[r].schema++;
+										}
+									}
+								}
+					// Write file to disk
+								// Encode data array to utf8 json text
+								data.crowned[0].last_online = Date.now();
+								var json_raw = unescape(encodeURIComponent(JSON.stringify(data, undefined, '\t')))
+								console.log(json_raw);
+								this.cmd("fileWrite", [data_inner_path, btoa(json_raw)], (res) => {
+									if (res == "ok") {
+										// Reset the message input
+										document.getElementById("message").value = ""
+										// Sign the changed file in our user's directory
+										this.cmd("siteSign", {"inner_path": content_inner_path}, (res) => {
+											// if (bundle.control == 'initialize') {
+											// 	alert(1)
+											// 	this.updateData({'control':'initialize'});
+											// } else {
+												this.updateData(); // update messages
+											// }	
+											// Publish to other users
+											this.cmd("sitePublish", {"inner_path": content_inner_path, "sign": false})
+										});
+									} else {
+										this.cmd("wrapperNotification", ["error", "File write error: #{res}"])
+									}
+								});
+							});
+						});
+						return(false);
+					} 
+				});
+			}
+
+			updateData (bundle={'control':0}) {
+				// alert('in updateData: ' + bundle.control);
+				// alert('running updateData function Bundle.control: ' + bundle.control)
+				this.addMessage('Running UpdateData: ', bundle.control);
+				this.cmd("siteInfo", {}, (site_info) => {
+					if (site_info.cert_user_id) {
+						this.cmd("dbQuery", ["SELECT * FROM crowned"], (xcup) => {
+							var you;
+							var usersQuantity = xcup.length;
+							let yourKingdomsInfo;
+
+						// find you cycle throug	h users
+							for (var i=0; i<xcup.length; i++) {
+								// alert('xcup[i].your_cert_id: '+xcup[i].your_cert_id+' , site_info.cert_user_id: '+site_info.cert_user_id)
+								if (xcup[i].your_cert_id == site_info.cert_user_id) {
+									yourKingdomsInfo = xcup[i];
+									you = xcup[i];
+									break;
+								}
+							}
+							// alert(yourKingdomsInfo)
+							if (yourKingdomsInfo === undefined) {
+								// alert(1)
+								this.windowSelect('askPeople');
+							} else if (yourKingdomsInfo.your_king === undefined) {
+								// alert(2)
+								this.windowSelect('askPeople');
+							} else if (yourKingdomsInfo.your_king === 'kingless') {
+								// alert(3)
+								this.windowSelect('askPeople')
+								
+							} else {
+							// get and load messages to your king
+								// building questionweb interface buttions and info
+								this.cmd("dbQuery", ["SELECT * FROM message WHERE message_to_your_king=\'" + yourKingdomsInfo.your_king + '\' ORDER BY date_added ASC'], (kingsMessages) => {
+									messages.innerHTML = "";  // Always start with empty messages
+									// console.log('your current king is: ' + yourKingdomsInfo.your_king)
+						// generate interface 
+									//make iKingMatch quantity bubble and your kings questions
+									var iMatchQuantity = null;
+									var quantityCup;
+									iMatchQuantity = document.createElement('div');
+									iMatchQuantity.innerText = 'Your King is ' + yourKingdomsInfo.your_king;
+									iMatchQuantity.id ='matchQuantityDiv';
+									yourCurrentKingNoticeDiv.innerText = '';
+									var randomColor = Math.floor(Math.random()*16777215).toString(16);
+									iMatchQuantity.style.border = '2px solid #' + randomColor;
+									yourCurrentKingNoticeDiv.appendChild(iMatchQuantity);
+
+									if (kingsMessages.length > 0) {
+										for (var p=0; p<kingsMessages.length; p++){
+											if (kingsMessages[p].message_to_your_king == yourKingdomsInfo.your_king) {
+												var messageWrap = document.createElement('div');
+												messageWrap.id = 'messageWrap';
+												var editMessageDiv = document.createElement('button');
+												editMessageDiv.id = 'editMessageDiv';
+
+
+
+												// addEventListener breaks for loop by reseting element data and handlers, this is closure: closed fucntion to add the listener with out losing data
+												if (bundle.control == 'editMessage' && kingsMessages[p].message_id == bundle.choice) {
+													(function(index){
+														var editMessageBundle = {
+															'control':'editMessage',
+															'message_id' : kingsMessages[index].message_id,
+															'input_id' : 'messageStylesInput_' + kingsMessages[index].message_id
+														}
+
+														editMessageDiv.addEventListener("click", function() {
+															page.loadMessages(editMessageBundle);
+														})
+													})(p)
+													
+													var iMessageDiv = document.createElement('input');
+													iMessageDiv.id='messageStylesInput' + '_' + kingsMessages[p].message_id;
+													iMessageDiv.value= kingsMessages[p].body;
+													editMessageDiv.innerText = 'save';
+													editMessageDiv.id = 'editMessageSaveDiv';
+												} else {
+													editMessageDiv.innerText = 'edit';
+													(function(index){
+														var editMessageBundle = {
+															'control':'editMessage',
+															'choice' : kingsMessages[index].message_id
+														}
+
+														editMessageDiv.addEventListener("click", function() {
+															page.updateData(editMessageBundle);
+														});
+													})(p)
+
+													var iMessageDiv = document.createElement('div');
+													iMessageDiv.id='messageStylesDiv';
+
+													var posterCertCupStringUnshortened = kingsMessages[p].posters_cert_id;
+													//trim the string to the maximum length
+													var posterCertCupStringShortened = posterCertCupStringUnshortened.substr(0, 11);
+
+													iMessageDiv.innerText = '(['+kingsMessages[p].date_added+'] ' + posterCertCupStringShortened +' ) "'+ kingsMessages[p].body + '"';
+
+													// addEventListener breaks for loop by reseting element data and handlers, this is closure: closed fucntion to add the listener with out losing data
+													(function(index){
+														iMessageDiv.addEventListener("click", function() {
+															page.addMessage('getUser','' + kingsMessages[index].posters_cert_id)
+														})
+													})(p)
+												}
+
+												if (kingsMessages[p].posters_cert_id == site_info.cert_user_id) {
+													messageWrap.appendChild(editMessageDiv);
+												}
+												messageWrap.appendChild(iMessageDiv);
+												messages.appendChild(messageWrap);
+											}
+										}
+
+									}
+									// });
+
+							// get and load your kings questions
+									// console.log(yourKingdomsInfo)
+									if (xcup.length - (yourKingdomsInfo.king_position) > 0) {
+										this.cmd('dbQuery', ['SELECT * FROM questions WHERE cert_user_id=\'' + yourKingdomsInfo.your_king + '\''], (questions) => {
+											if (yourKingdomsInfo.your_king != 'kingless') {
+
+												wrapDiv.innerText = '';
+												questionsDiv.innerText = '';
+
+												if (yourKingdomsInfo.question_position != questions.length) {
+													this.addMessage('Running updateData function:','in making more questions')
+													// find active question
+													for (var k=0; k<questions.length; k++) {
+														if (k == yourKingdomsInfo.question_position) {
+															var iDiv = null;
+															var agreeDiv = null;
+															var agreeBundle = {};
+															var disagreeDiv = null;
+															var disagreeBundle = {};
+															var askYourQuestionDiv = null;
+															var brElement = document.createElement('br');
+
+
+															// current question divs
+														// edit button for question
+															var questionEditButton = document.createElement('button');
+															questionEditButton.id = 'questionEditButton';
+															if (bundle.control == 'questionEdit') {
+																questionEditButton.innerText = 'save';
+																questionEditButton.id = 'questionEditSaveButton';
+																iDiv = document.createElement('textarea');
+																iDiv.id = 'editQuestionInput';
+																iDiv.value = questions[k].question;
+
+																(function(index) {
+																	var questionEditBundle = {
+																		'control': 'questionEdit',
+																		'choice': questions[index].question
+																	}
+																	iDiv.addEventListener('click', function() {page.autoGrow(this)});
+
+																	questionEditButton.addEventListener("click", function() {
+																		page.loadMessages(questionEditBundle);
+																	})
+																})(k);
+															} else {
+																questionEditButton.innerText = 'edit';
+																iDiv = document.createElement('div');
+																iDiv.innerText = questions[k].question;
+
+																(function(index) {
+																	var questionEditBundle = {
+																		'control': 'questionEdit',
+																	}
+
+																	questionEditButton.addEventListener("click", function() {
+																		page.updateData(questionEditBundle);
+																	})
+																})(k);
+															}
+															
+															iDiv.className = 'usersDiv';
+															
+														// agree div
+
+															if (yourKingdomsInfo.question_position === (questions.length-1)) {
+																agreeDiv = document.createElement('button');
+																agreeDiv.style.color = 'grey';
+																agreeDiv.innerText = yourKingdomsInfo.your_king +' has nothing more to say.';
+															} else {
+																agreeDiv = document.createElement('button');
+																agreeDiv.innerText = 'Follow ' + yourKingdomsInfo.your_king;
+																agreeBundle = {
+																	'control' : 'updateUserPosition',
+																	'choice' : 'agree',
+																	'question_position': yourKingdomsInfo.question_position,
+																};
+
+																agreeDiv.addEventListener("click", function(){page.loadMessages(agreeBundle)});
+															}
+															wrapDiv.appendChild(agreeDiv);
+														// disagree div
+															disagreeBundle = {
+																'control' : 'updateUserPosition',
+																'choice' : 'disagree'
+															};
+															disagreeDiv = document.createElement('button');
+															disagreeDiv.innerText = 'Search for New King';
+															disagreeDiv.id = 'cancelButton';
+															disagreeDiv.addEventListener("click", function(){page.loadMessages(disagreeBundle)});
+															wrapDiv.appendChild(disagreeDiv);
+
+															if (questions[k].cert_user_id == site_info.cert_user_id) {
+																questionsDiv.appendChild(questionEditButton);
+															}
+															questionsDiv.appendChild(iDiv);
+
+														// ask your question div
+															askYourQuestionDiv = document.createElement('button');
+															askYourQuestionDiv.innerText = 'Become a King';
+															askYourQuestionDiv.id = 'askYourQuestionDiv';
+															askYourQuestionDiv.addEventListener("click", function(){page.windowSelect('askPeople')});
+
+															wrapDiv.appendChild(askYourQuestionDiv);
+															break;
+														}
+													}
+
+												// load modify Question Location text buttons to logged in user
+													navigateQuestionsLeft.innerHTML = '';
+													navigateQuestionsRight.innerHTML = '';
+
+													if (yourKingdomsInfo.question_position != 0) {
+														var backOneData = {
+															'control':'modifyQuestionLocation',
+															'choice':'backOne',
+															'question_position': yourKingdomsInfo.question_position -1
+														}
+
+														var iModifyPositionBackOneDiv = document.createElement('a');
+														iModifyPositionBackOneDiv.innerText = '<';
+														iModifyPositionBackOneDiv.addEventListener("click", function(){page.loadMessages(backOneData)});
+														navigateQuestionsLeft.appendChild(iModifyPositionBackOneDiv);
+													
+
+														var beginningData = {
+															'control':'modifyQuestionLocation',
+															'choice':'beginning',
+															'question_position': 0
+														}
+
+														var iModifyPositionBeginningDiv = document.createElement('a');
+														iModifyPositionBeginningDiv.innerText = '<<';
+														iModifyPositionBeginningDiv.addEventListener("click", function(){page.loadMessages(beginningData)});
+														navigateQuestionsLeft.appendChild(iModifyPositionBeginningDiv);
+													}
+
+													if (yourKingdomsInfo.question_position != questions.length) {
+														var endData = {
+															'control':'modifyQuestionLocation',
+															'choice':'end',
+															'question_position': questions.length -1
+														}
+
+														var iModifyPositionEndDiv = document.createElement('a');
+														iModifyPositionEndDiv.innerText = '>>';
+														iModifyPositionEndDiv.addEventListener("click", function(){page.loadMessages(endData)});
+														navigateQuestionsRight.appendChild(iModifyPositionEndDiv);
+
+													
+														var forwardOneData = {
+															'control':'modifyQuestionLocation',
+															'choice':'forwardOne',
+															'question_position': yourKingdomsInfo.question_position +1
+														}
+
+														var iModifyPositionForwardOneDiv = document.createElement('a');
+														iModifyPositionForwardOneDiv.innerText = '>';
+														iModifyPositionForwardOneDiv.addEventListener("click", function(){page.loadMessages(forwardOneData)});
+														navigateQuestionsRight.appendChild(iModifyPositionForwardOneDiv);
+													}
+												} else {
+													if (bundle.control != 'initialize') {
+														this.loadMessages({'control':'updateUserPosition','choice':'disagree'});
+														// this.windowSelect('askPeople');
+													}
+												}
+													
+											} else if (xcup.length - (yourKingdomsInfo.king_position) == 0 && bundle.control != 'initialize') {
+												this.windowSelect('askPeople');
+											}
+										});
+									} else {
+										this.windowSelect('askPeople');
+										// alert('inx')
+										// if (yourKingdomsInfo.your_king === 'kingless') {
+											// alert('kingless loading messages (console: updateUserPosition, choice:disagree)')
+											// this.loadMessages({'control':'updateUserPosition','choice':'disagree'});
+										// } else {
+											// this.windowSelect('askPeople');
+										// }
+									}
+								});
+							}
+						});
+					} 
+				});
+			}
+
+			windowSelect (window) {
+				// 0 = door
+				// 1 = menu
+				// 2 = questionWeb
+				// 3 = flightServicesBusiness
+				// 4 = riceBusiness
+				// 5 = yourBusinessGoesHere
+
+				for(var i = 0; i < windows.length; i++){
+					windows[i].style.display = "none";
+				}
+				if (window === 'door') {
+					windows[0].style.display = 'table';
+					
+				} if (window === 'menu') {
+					// disclaimerIdChoice
+					if (disclaimerIdChoice.checked == true) {
+						this.checkIfLoggedIn();
+						this.cmd("siteInfo", {}, (site_info) => {
+							if (site_info.cert_user_id) {
+								windows[2].style.display = 'table';
+								windows[3].style.display = 'table';
+								this.updateData();
+							} else {
+								windows[0].style.display = 'table';
+								// disclaimerIdChoiceDescription.style.color = "red";
+							}
+						});					
+					} else {
+			 			windows[0].style.display = 'table';
+						disclaimerIdChoiceDescription.style.color = "red";
+					}
+				} else if (window === 'questionWeb') {
+					windows[2].style.display = 'table';
+					windows[3].style.display = 'table';
+					this.updateData();
+				} else if (window === 'attractPeople') {
+					windows[2].style.display = 'table';
+					windows[3].style.display = 'table';
+				} else if (window === 'askPeople') {
+					windows[2].style.display = 'table';
+					windows[4].style.display = 'table';
+				} else if (window === 'flightServicesBusiness') {
+					windows[5].style.display = 'table';
+				} else if (window === 'riceBusiness') {
+					windows[6].style.display = 'table';
+				} else if (window === 'yourBusinessGoesHere') {
+					windows[7].style.display = 'table';
+				}
+			} 
+
+			onOpenWebsocket () {
+				this.cmd("siteInfo", {}, (site_info) => {
+					if (site_info.cert_user_id) {
+						this.addMessage('Running Function','onOpenWebsocket');
+						for (var h=0; h<selectUserClassGroup.length; h++) {
+							selectUserClassGroup[h].innerText = site_info.cert_user_id;
+						}
+						this.addMessage("System", "Ready to call ZeroFrame API!");
+						this.setSiteInfo(site_info);
+					} else if (!site_info.cert_user_id) {
+						loggedIn = false;
+					}
+				});
+			}
+		}
+
+		let page = new ZeroChat();
+
+		page.loadMessages({'control':'initialize', 'choice':'test1'});
+	</script>
 </body>
 </html>
+
+<!-- 21/12/2021 -->
